@@ -3,82 +3,95 @@ import {Typography, IconButton, Dialog, Grid, Card, CardContent, CardActionArea,
 import CloseIcon from '@material-ui/icons/Close';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
+import styled from "styled-components";
 
-export default () => {
+export default ({vegetables}) => {
+  
   const classes = styles(),
-  { mainGrid, cardStyle, media, cardTitle } = classes
+  { mainGrid, cardStyle, media, cardTitle } = classes;
 
   // Dialog functionality
-  const [open, setOpen] = React.useState(false);
-  const [selectedValue, setSelectedValue] = React.useState();
+  const [open, setOpen ] = React.useState(false);
 
-  function handleClickOpen() {
+  const [selectedId, setSelectedId] = React.useState(null);
+
+  const handleClickOpen = (id) => {
+    setSelectedId(id)
     setOpen(true); 
-  }
+  };
 
-  const handleClose = value => {
+  const handleClose = () => {
     setOpen(false);
-    setSelectedValue(value);
   };
 
   return (
     <Grid container className={mainGrid}>
-      <Grid item xs>
-        <Card className={cardStyle}>
-          <CardActionArea onClick={handleClickOpen}>
-            <CardMedia image={require('../Assets/carrot.png')} className={media}/>
-            <CardContent>
-              <Typography gutterBottom className={cardTitle} variant="h5" component="h2">
-                Carrot
-              </Typography>
-            </CardContent>
-          </CardActionArea>  
-        </Card>
-      </Grid>
-
+      {Object.keys(vegetables).map((index, key) => {
+        return (
+          <Grid item xs key={key}>
+            <Card className={cardStyle}>
+              <CardActionArea onClick={() => handleClickOpen(index)}>
+                <CardMedia image={require(`../Assets/${vegetables[index].name}.png`)} className={media}/>
+                <CardContent>
+                  <Typography gutterBottom className={cardTitle} variant="h5" component="h2">
+                    {vegetables[index].name}
+                  </Typography>
+                </CardContent>
+              </CardActionArea>  
+            </Card>
+          </Grid>
+        );
+      })};
+      
       {/* Modal Element */}
-      <VegetableDialog selectedValue={selectedValue} open={open} onClose={handleClose} classes={classes} />
+      <VegetableDialog 
+        open={open} 
+        onClose={handleClose} 
+        vegetables={vegetables} 
+        classes={classes}
+        data={vegetables[selectedId]} 
+      />
     </Grid>
-    
-  )
-}
+  );
+};
+
 
 // Modal Window
 const VegetableDialog = (props) => {
-  const { classes, onClose, selectedValue, ...other } = props;
+  if (props.data){
+    const { classes, onClose, ...other } = props,
+    {name, description, start, harvest} = props.data
   
-  function handleClose() {
-    onClose(selectedValue);
-  }
-
-  return (
-    
-    <Dialog onClose={handleClose} aria-labelledby="title" {...other}>
-      <DialogTitle id="title" onClose={handleClose} classes={classes}>
-        Carrot
-      </DialogTitle>
-      <MuiDialogContent dividers>
-            <Typography gutterBottom>
-              Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac
-              facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum
-              at eros.
-            </Typography>
-            <Typography gutterBottom>
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis
-              lacus vel augue laoreet rutrum faucibus dolor auctor.
-            </Typography>
-            <Typography gutterBottom>
-              Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel
-              scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus
-              auctor fringilla.
-            </Typography>
-          </MuiDialogContent>
-    </Dialog>
-  );
-}
+    function handleClose() {
+      onClose();
+    };
+  
+    return (
+      <Dialog onClose={handleClose} aria-labelledby="title" {...other}>
+        <DialogTitle id="title" onClose={handleClose} classes={classes}>
+          <Bold>{name}</Bold>
+        </DialogTitle>
+        <MuiDialogContent dividers>
+          <Typography gutterBottom>
+            <Bold> Description: </Bold>{description} 
+          </Typography>
+          <Typography gutterBottom>
+          <br /><Bold>When To Plant: </Bold> {start} 
+          </Typography>
+          <Typography gutterBottom>
+          <br /><Bold>Harvesting & Storage: </Bold>{harvest}
+          </Typography>
+        </MuiDialogContent>
+      </Dialog>
+    );
+  }else{
+    return null;
+  };
+};
 
 const DialogTitle = props => {
   const { children, classes, onClose } = props;
+  
   return (
    <MuiDialogTitle disableTypography className={classes.root}>
       <Typography variant="h6">{children}</Typography>
@@ -88,17 +101,31 @@ const DialogTitle = props => {
         </IconButton>
       ) : null}
     </MuiDialogTitle> 
-    
   );
 };
+
+// Styles
+
+const Bold = styled.span`
+  font-weight: bold;
+`;
 
 const styles = makeStyles(theme => ({
   mainGrid:{
     marginTop: 50,
-    marginLeft: 20
+    marginLeft: 10,
+    [theme.breakpoints.down('sm')]: {
+      marginLeft: 0
+    }
   },
   cardStyle: {
-    maxWidth: 185
+    maxWidth: 185,
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: 120,
+      maxHeight: 120,
+      marginBottom: 3,
+      marginRight: 3
+    }
   },
   media: {
     paddingTop: '25%',
@@ -106,12 +133,19 @@ const styles = makeStyles(theme => ({
     marginRight: 'auto',
     marginTop: 20,
     width: 100,
-    height: 100
+    height: 100,
+    [theme.breakpoints.down('sm')]: {
+      width: 50,
+      height: 50,
+    }
   },
   cardTitle:{
     color: 'black',
     "fontFamily": "\"Cinzel\", serif",
     fontWeight: 'bold',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 15
+    }
   },
   root: {
     margin: 0,

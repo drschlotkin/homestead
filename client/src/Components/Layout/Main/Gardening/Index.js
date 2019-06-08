@@ -7,6 +7,7 @@ const topics = ['Vegetables', 'Soil', 'Layout', 'Pests'];
 export default class extends Component {
   state = {
     navListItem: '',
+    vegetables: {}
   }
 
   handleTopicSelected = (topic) => {
@@ -23,7 +24,10 @@ export default class extends Component {
     }})
     .then(res => res.json())
     .then(res => {
-      console.log(res[0])
+      console.log(res)
+      this.setState({    
+        vegetables: res
+      })
     }).catch(err => {
       if (err) console.log(err);
     });
@@ -34,11 +38,12 @@ export default class extends Component {
   };
 
   render(){
+    
     const {navListItem} = this.state
     return (
       <div style={{display: 'flex'}}>
         <NavBar topics={topics} onSelect={this.handleTopicSelected} />
-        <Main navListItem={navListItem}/>
+        <Main navListItem={navListItem} vegetables={this.state.vegetables}/>
       </div>
     );
   };

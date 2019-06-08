@@ -1,21 +1,28 @@
 import React, {Fragment} from 'react';
-import {Typography, Grid, Divider, makeStyles, List, ListItem, ListItemIcon } from '@material-ui/core';
+import {Typography, Grid, makeStyles, List, ListItem, ListItemIcon } from '@material-ui/core';
 import Background from './Assets/1.jpg';
 import Arrow from '@material-ui/icons/ArrowLeft';
 import Vegetables from './Vegetables'
+import Soil from './Soil'
 // import Test from './Vegetables/test'
 
-export default({navListItem}) => {
+export default({navListItem, vegetables}) => {
+
   const classes = styles();
   let heading;
-
+  
   const renderContent = () => {
     switch(navListItem){
       case 'Vegetables':
-        return <Vegetables />
+        return <Vegetables vegetables={vegetables}/>
+      case 'Soil':
+        return <Soil />
     };
   };
  
+
+  /* Check for category selection on Side Navigation Bar and set 'heading' variable */
+
   if (navListItem){
     heading = 
       <Fragment>
@@ -37,6 +44,9 @@ export default({navListItem}) => {
       </List>
   };
 
+
+  /* Display category and associated information to DOM */
+
   return <main className={classes.content}>
     <div className={classes.main}>
       <div className={classes.toolbar} />
@@ -44,12 +54,12 @@ export default({navListItem}) => {
           <Grid item xs={12}>
           {/* delete these two typography tags when done */}
             <Typography className={classes.heading} variant="h3" >
-              Vegetables
+              Soil
             </Typography>
 
-            <Typography className={classes.heading} style={{paddingTop: 30}} variant="h5" >
+            {/* <Typography className={`${classes.heading} ${classes.subheading}`} style={{paddingTop: 30}} variant="h5" >
               Click card for more information
-            </Typography> 
+            </Typography>  */}
             {/* {heading}
             {navListItem === 'Vegetables' ?
               <Typography className={classes.heading} style={{paddingTop: 30}} variant="h5" >
@@ -60,8 +70,8 @@ export default({navListItem}) => {
           </Grid>
         </Grid>
     </div>
-    <Vegetables />
-    {/* <Test /> */}
+    {/* <Vegetables vegetables={vegetables} /> */}
+    <Soil />
     {/* {renderContent()} */}
   </main>
 };
@@ -84,6 +94,14 @@ const styles = makeStyles(theme => ({
     letterSpacing: 5,
     fontWeight: 'bold',
     "fontFamily": "\"Cinzel\", serif",
+    [theme.breakpoints.down('xs')]: {
+      fontSize: 30
+    }
+  },
+  subheading: {
+    [theme.breakpoints.down('xs')]: {
+      fontSize: 15
+    }
   },
   main: {
     background: `linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5))` ,
