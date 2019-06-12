@@ -2,8 +2,7 @@ import React, {Fragment} from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Banner from './Layout/Landing';
 import Gardening from './Layout/Main/Gardening';
-
-// import Header from './Layout/Main/Header'
+import Header from './Layout/Header'
 // import Footer from './Layout/Footer'
 
 export default() => {

@@ -31,13 +31,13 @@ const Header = props => {
           <Toolbar>
           <div className={grow} />
           <Button disableRipple>
-            About
+            Vegetables
           </Button>
           <Button disableRipple>
-            Contact
+            Livestock
           </Button>
           <Button disableRipple>
-            Resources
+            Community
           </Button>
         
           </Toolbar>

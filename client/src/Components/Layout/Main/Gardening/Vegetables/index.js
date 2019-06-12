@@ -4,11 +4,12 @@ import CloseIcon from '@material-ui/icons/Close';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import styled from "styled-components";
+import { Consumer } from '../context'
 
-export default ({vegetables}) => {
-  
+
+const Vegetables = () => {
   const classes = styles(),
-  { mainGrid, cardStyle, media, cardTitle } = classes;
+    { mainGrid, cardStyle, media, cardTitle, gridItem } = classes;
 
   // Dialog functionality
   const [open, setOpen ] = React.useState(false);
@@ -24,26 +25,28 @@ export default ({vegetables}) => {
     setOpen(false);
   };
 
-  return (
-    <Grid container className={mainGrid}>
-      {Object.keys(vegetables).map((index, key) => {
-        return (
-          <Grid item xs key={key}>
-            <Card className={cardStyle}>
-              <CardActionArea onClick={() => handleClickOpen(index)}>
-                <CardMedia image={require(`../Assets/${vegetables[index].name}.png`)} className={media}/>
-                <CardContent>
-                  <Typography gutterBottom className={cardTitle} variant="h5" component="h2">
-                    {vegetables[index].name}
-                  </Typography>
-                </CardContent>
-              </CardActionArea>  
-            </Card>
-          </Grid>
-        );
-      })};
-      
-      {/* Modal Element */}
+  return <Consumer>
+    {({vegetables}) => 
+      <Grid container className={mainGrid} >
+        {Object.keys(vegetables).map((index, key) => {
+           {/* change xs to 3 ? */}
+          return (
+            <Grid item xs={6} lg={3} key={key} className={gridItem}>
+              <Card className={cardStyle} style={{margin: '0 auto'}}>
+                <CardActionArea onClick={() => handleClickOpen(index)}>
+                  <CardMedia image={require(`../Assets/${vegetables[index].name}.png`)} className={media}/>
+                  <CardContent>
+                    <Typography gutterBottom className={cardTitle} variant="h5" component="h2">
+                      {vegetables[index].name}
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>  
+              </Card>
+            </Grid>
+          );
+        })};
+       
+          {/* Modal Element */}
       <VegetableDialog 
         open={open} 
         onClose={handleClose} 
@@ -51,13 +54,15 @@ export default ({vegetables}) => {
         classes={classes}
         data={vegetables[selectedId]} 
       />
-    </Grid>
-  );
+      </Grid>
+    }
+    </Consumer>
 };
 
 
 // Modal Window
 const VegetableDialog = (props) => {
+  
   if (props.data){
     const { classes, onClose, ...other } = props,
     {name, description, start, harvest} = props.data
@@ -67,7 +72,7 @@ const VegetableDialog = (props) => {
     };
   
     return (
-      <Dialog onClose={handleClose} aria-labelledby="title" {...other}>
+      <Dialog onClose={handleClose} aria-labelledby="title" {...other} style={{alignItems:'center',justifyContent:'center'}}>
         <DialogTitle id="title" onClose={handleClose} classes={classes}>
           <Bold>{name}</Bold>
         </DialogTitle>
@@ -113,18 +118,28 @@ const Bold = styled.span`
 const styles = makeStyles(theme => ({
   mainGrid:{
     marginTop: 50,
-    marginLeft: 10,
+    
     [theme.breakpoints.down('sm')]: {
       marginLeft: 0
+    }
+  },
+  gridItem:{
+    width: '100%',
+    padding: theme.spacing(1),
+    [theme.breakpoints.down('sm')]: {
+     
+      // maxHeight: 120,
+      // marginBottom: 3,
+      // marginRight: 3
     }
   },
   cardStyle: {
     maxWidth: 185,
     [theme.breakpoints.down('sm')]: {
-      maxWidth: 120,
-      maxHeight: 120,
-      marginBottom: 3,
-      marginRight: 3
+      // width: 120,
+      // maxHeight: 120,
+      // marginBottom: 3,
+      // marginRight: 3
     }
   },
   media: {
@@ -158,3 +173,6 @@ const styles = makeStyles(theme => ({
     color: theme.palette.grey[500],
   },
 }))
+
+// export default withContext(Vegetables)
+export default Vegetables

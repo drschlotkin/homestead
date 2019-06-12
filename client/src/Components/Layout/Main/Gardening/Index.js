@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
-import Main from './Main'
-import NavBar from './NavBar'
-
-const topics = ['Vegetables', 'Soil', 'Layout', 'Pests'];
+import Main from './Main';
+import NavBar from './NavBar';
+import { Provider } from './context';
 
 export default class extends Component {
+
   state = {
     navListItem: '',
     vegetables: {}
   }
 
-  handleTopicSelected = (topic) => {
+  handleTopicSelected = (topic) => 
     this.setState({
       navListItem: topic
     });
-  };
 
-  getVegetableList = () => {
+  /* Load vegetable information from database */  
+  getVegetableList = () =>
     fetch('http://localhost:5000/api/vegetables', {
       headers : { 
       'Content-Type': 'application/json',
@@ -31,20 +31,23 @@ export default class extends Component {
     }).catch(err => {
       if (err) console.log(err);
     });
-  };
   
-  componentDidMount = () => {
-    this.getVegetableList();
-  };
+  componentDidMount = () => this.getVegetableList();
+
+  getContext = () => ({
+    vegetables: this.state.vegetables,
+    onTopicSelect: this.handleTopicSelected,
+    topics: ['Vegetables', 'Soil', 'Pests']
+  });
 
   render(){
-    
-    const {navListItem} = this.state
-    return (
+    const {navListItem} = this.state;
+
+    return <Provider value={this.getContext()}>
       <div style={{display: 'flex'}}>
-        <NavBar topics={topics} onSelect={this.handleTopicSelected} />
-        <Main navListItem={navListItem} vegetables={this.state.vegetables}/>
+        <NavBar />
+        <Main navListItem={navListItem}/>
       </div>
-    );
+    </Provider>
   };
 };

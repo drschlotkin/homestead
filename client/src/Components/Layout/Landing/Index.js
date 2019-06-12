@@ -6,7 +6,7 @@ import Section from './Template';
 
 const Banner = (props) => {
   const {main, banner, welcome, blue, red, paragraph } = props.classes,
-  sections = ['Gardening', 'Livestock', 'Off Grid', 'Community'];
+    sections = ['Gardening', 'Livestock', 'Off Grid', 'Community'];
 
   return (
     <Grid container className={main} >

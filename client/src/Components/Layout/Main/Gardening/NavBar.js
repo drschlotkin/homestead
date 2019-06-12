@@ -4,18 +4,19 @@ import { useTheme } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import NavLinks from './NavLinks';
 
+// DELETE HEADER IN TYPOGRAPHY
+
+
 const drawerWidth = 300;
 
-export default ({onSelect, topics}) => {
+export default() => {
   
-  const classes = useStyles(),
-  {appBar, menuButton, drawer, drawerPaper} = classes,
-  theme = useTheme(),
-  [mobileOpen, setMobileOpen] = React.useState(false);
+  const {appBar, menuButton, drawer, drawerPaper} = useStyles(),
+    theme = useTheme(),
+    [mobileOpen, setMobileOpen] = React.useState(false);
 
-  const handleDrawerToggle = () => {
+  const handleDrawerToggle = () =>
     setMobileOpen(!mobileOpen);
-  };
 
   return <Fragment>
     <AppBar position="fixed" className={appBar}>
@@ -30,7 +31,7 @@ export default ({onSelect, topics}) => {
           <MenuIcon />
         </IconButton>
         <Typography variant="h6" style={{color:'#222222'}} noWrap>
-         
+         {/* Header */}
         </Typography>
       </Toolbar>
     </AppBar>
@@ -42,20 +43,16 @@ export default ({onSelect, topics}) => {
           anchor={theme.direction === 'rtl' ? 'right' : 'left'}
           open={mobileOpen}
           onClose={handleDrawerToggle}
-          classes={{
-            paper: drawerPaper,
-          }}
-          ModalProps={{
-            keepMounted: true,
-          }}
+          classes={{ paper: drawerPaper }}
+          ModalProps={{ keepMounted: true }}
         >
-          <NavLinks topics={topics} onSelect={onSelect}/>
+          <NavLinks/>
         </Drawer>
       </Hidden>
 
       <Hidden xsDown implementation="css">
         <Drawer classes={{ paper: drawerPaper }} variant="permanent" open>
-          <NavLinks topics={topics} onSelect={onSelect}/>
+          <NavLinks/>
         </Drawer>
       </Hidden>
     </nav>
@@ -91,5 +88,4 @@ const useStyles = makeStyles(theme => ({
     width: drawerWidth,
     backgroundColor: '#222222'
   },
-  
 }));

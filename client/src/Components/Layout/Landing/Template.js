@@ -66,5 +66,4 @@ const styles = theme => ({
   focusHighlight: {borderRadius: "60%"}
 });
 
-
 export default withStyles(styles)(Section);
