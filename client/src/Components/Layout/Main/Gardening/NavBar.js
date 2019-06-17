@@ -6,29 +6,28 @@ import NavLinks from './NavLinks';
 
 // DELETE HEADER IN TYPOGRAPHY
 
-
 const drawerWidth = 300;
 
 export default() => {
   
-  const {appBar, menuButton, drawer, drawerPaper} = useStyles(),
-    theme = useTheme(),
+  const {appBar, toolBar, menuButton, drawer, drawerPaper} = useStyles(),
+    // theme = useTheme(),
     [mobileOpen, setMobileOpen] = React.useState(false);
 
-  const handleDrawerToggle = () =>
+  const handleDrawerToggle = () => 
     setMobileOpen(!mobileOpen);
-
+    
   return <Fragment>
     <AppBar position="fixed" className={appBar}>
-      <Toolbar>
+      <Toolbar className={toolBar}>
         <IconButton
           color="inherit"
-          aria-label="Open drawer"
-          edge="start"
+          // aria-label="Open drawer"
+          // edge="start"
           onClick={handleDrawerToggle}
           className={menuButton}
         >
-          <MenuIcon />
+          <MenuIcon/>
         </IconButton>
         <Typography variant="h6" style={{color:'#222222'}} noWrap>
          {/* Header */}
@@ -40,13 +39,14 @@ export default() => {
       <Hidden smUp implementation="css">
         <Drawer
           variant="temporary"
-          anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+          // anchor={theme.direction === 'rtl' ? 'right' : 'left'}
           open={mobileOpen}
           onClose={handleDrawerToggle}
+          onClick={handleDrawerToggle}
           classes={{ paper: drawerPaper }}
-          ModalProps={{ keepMounted: true }}
+          // ModalProps={{ keepMounted: true }}
         >
-          <NavLinks/>
+          <NavLinks onClose={handleDrawerToggle}/>
         </Drawer>
       </Hidden>
 
@@ -76,12 +76,21 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up('sm')]: {
       width: `calc(100% - ${drawerWidth}px)`,
     },
+    [theme.breakpoints.down('sm')]: {
+      backgroundColor: '#424242',
+      
+    },
+  },
+  toolBar: {
+    paddingLeft: 0,
+    minHeight: 0
   },
   menuButton: {
     marginRight: theme.spacing(2),
     [theme.breakpoints.up('sm')]: {
       display: 'none',
     },
+    
   },
   toolbar: theme.mixins.toolbar,
   drawerPaper: {

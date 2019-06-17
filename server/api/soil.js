@@ -1,12 +1,12 @@
 var express = require('express');
-var Vegetables = require('../models/vegetables');
+var Soil = require('../models/soil');
 
 var router = express.Router();
 
 router.get('/', (req, res) => {
-  Vegetables.retrieveAll((err, vegetables) => {    
+  Soil.retrieveAll((err, soil) => {    
     if (err) return res.json(err);
-    return res.json(vegetables);
+    return res.json(soil);
   });
 });
 

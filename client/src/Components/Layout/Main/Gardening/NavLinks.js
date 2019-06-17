@@ -1,18 +1,18 @@
 import React, { Fragment } from 'react';
-import { Grid, Card, CardMedia, Link, List, ListItem, ListItemIcon, Divider, Typography, makeStyles } from '@material-ui/core';
-import { Link as RouterLink } from 'react-router-dom';
+import { Grid, Link, List, ListItem, ListItemIcon, Divider, Typography, makeStyles } from '@material-ui/core';
 import { Consumer } from './context'
 
-
 export default() => {
-  const {header, listItems, listName} = useStyles()
   
+  const classes = useStyles(),
+  {header, listItems, listName} = classes
+
   return <Consumer>
     {({onTopicSelect, topics}) => 
       <Fragment>
         <Grid container>
           <Grid item xs={12}>
-            <Link component ={RouterLink} to="/" underline='none'>
+            <Link onClick={() => onTopicSelect('')} style={{cursor: 'pointer'}} underline='none'>
               <Typography variant="h3" gutterBottom className={header}>
                 NL Farming
               </Typography>
@@ -20,6 +20,7 @@ export default() => {
           </Grid>
         </Grid>
         <List>
+
           {topics.map((topic, index) => {
             return (
               <Fragment key={index}>
@@ -35,25 +36,21 @@ export default() => {
               </Fragment>
             )
           })}
+          <ListItem style={{marginTop: '5em'}}>
+            <Typography variant="h5" className={listName} style={{color: '#bcbcba'}}>
+              Other Sections:
+            </Typography>
+          </ListItem>
+          <Divider />
+          <ListItem button className={listItems}>
+            <ListItemIcon>
+              <img src={require(`./Assets/livestock.png`)} height="42" width="42" />
+            </ListItemIcon>
+            <Typography variant="h5" className={listName}>
+              Livestock
+            </Typography>
+          </ListItem>
         </List>
-        
-        <Grid container style={{position: 'relative', height: '100%'}}>
-        
-          <Grid item xs={3} style={{position: 'absolute', bottom: 0, left: 0}}>
-            
-            <Typography variant="h6" gutterBottom></Typography>
-            
-            <Card style={{marginBottom: 40, marginLeft: 20, backgroundColor: 'transparent', boxShadow: 'none',}}>          
-              <CardMedia style={{height: 42, width: 42}} image={require(`../../Landing/Assets/icon0.png`)}/>
-            </Card>
-          </Grid>
-          <Grid item xs={3} style={{position: 'absolute', bottom: 0, left: 80}}>
-            <Card style={{marginBottom: 40, marginLeft: 20, backgroundColor: 'transparent', boxShadow: 'none',}}>          
-              <CardMedia style={{height: 42, width: 42}} image={require(`../../Landing/Assets/icon1.png`)}/>
-            </Card>
-          </Grid>
-        </Grid>
-       
       </Fragment>
     }    
   </Consumer>  

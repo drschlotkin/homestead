@@ -13,7 +13,6 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-
 // CORS
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*')
@@ -25,8 +24,8 @@ app.use((req, res, next) => {
   next()
 })
 
-
 app.use('/api/vegetables', require('./api/vegetables'));
+app.use('/api/soil', require('./api/soil'));
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}...`)

@@ -13,6 +13,6 @@ export const soil = [
   },
   {
     title: 'No-till Gardening',
-    description: 'The practice of leaving the soil surface of your garden undisturbed once it has been established. There are many proven benefits why this method is beneficial to the health of your soil. '
+    description: 'The practice of leaving the soil surface of your garden undisturbed once it has been established. There are many proven benefits why this method is beneficial to the health of your soil.'
   }
 ]

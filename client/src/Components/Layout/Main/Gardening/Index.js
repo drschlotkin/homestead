@@ -7,13 +7,17 @@ export default class extends Component {
 
   state = {
     navListItem: '',
-    vegetables: {}
+    vegetableData: {},
+    vegetableNames: [],
+    soil: {}
   }
 
-  handleTopicSelected = (topic) => 
+  handleTopicSelected = (topic) => {
     this.setState({
       navListItem: topic
     });
+  }
+
 
   /* Load vegetable information from database */  
   getVegetableList = () =>
@@ -24,25 +28,50 @@ export default class extends Component {
     }})
     .then(res => res.json())
     .then(res => {
-      console.log(res)
+      let arr = [];
+      Object.keys(res).forEach(key => arr.push(res[key].name))
       this.setState({    
-        vegetables: res
+        vegetableData: res,
+        vegetableNames: arr
       })
     }).catch(err => {
       if (err) console.log(err);
     });
-  
-  componentDidMount = () => this.getVegetableList();
 
+
+  /* Load soil information from database */  
+  getSoil = () =>
+    fetch('http://localhost:5000/api/soil', {
+      headers : { 
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }})
+    .then(res => res.json())
+    .then(res => {
+      this.setState({    
+        soil: res
+      })
+    }).catch(err => {
+      if (err) console.log(err);
+    });
+
+
+  componentDidMount = () => {
+    this.getVegetableList();
+    this.getSoil();
+  }
+
+  
   getContext = () => ({
-    vegetables: this.state.vegetables,
+    vegetableData: this.state.vegetableData,
+    vegetableNames: this.state.vegetableNames,
+    soil: this.state.soil,
     onTopicSelect: this.handleTopicSelected,
     topics: ['Vegetables', 'Soil', 'Pests']
   });
 
   render(){
     const {navListItem} = this.state;
-
     return <Provider value={this.getContext()}>
       <div style={{display: 'flex'}}>
         <NavBar />

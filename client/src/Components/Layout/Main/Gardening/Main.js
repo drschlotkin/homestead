@@ -1,15 +1,13 @@
 import React, {Fragment} from 'react';
-import {Typography, Grid, makeStyles, List, ListItem, ListItemIcon } from '@material-ui/core';
+import {Typography, Grid, makeStyles, List, ListItem } from '@material-ui/core';
 import Background from './Assets/1.jpg';
-import Arrow from '@material-ui/icons/ArrowLeft';
 import Vegetables from './Vegetables'
 import Soil from './Soil'
-import Layout from './Layout'
 import Pests from './Pests'
 
 
 export default({navListItem}) => {
-  const {heading, subheading, main, backgroundStyle, toolbar} = styles();
+  const {welcome, heading, subheading, main, backgroundStyle, toolbar, blue, red, banner, gridItem} = styles();
   
   /* Render body text based on nav bar selection */
 
@@ -19,9 +17,7 @@ export default({navListItem}) => {
         return <Vegetables/>
       case 'Soil':
         return <Soil />
-      case 'Layout':
-        return <Layout />
-      case 'Pest':
+      case 'Pests':
         return <Pests />
     };
   };
@@ -34,12 +30,9 @@ export default({navListItem}) => {
     if (!navListItem) {
       return (
         <List style={{width: '70%', margin: 'auto'}}>
-          <ListItem style={{justifyContent: 'center'}}>
-            <ListItemIcon>
-              <Arrow style={{fontSize: 60, color: '#222222'}}/>
-            </ListItemIcon>
-            <Typography className={heading} variant="h3" >
-              Choose a category
+          <ListItem className={welcome}>
+            <Typography className={banner} variant="h2" >
+              NL <span className={blue}>Gardeners</span> & <span className={red}>Homesteaders</span>
             </Typography>
           </ListItem>
         </List>
@@ -48,19 +41,16 @@ export default({navListItem}) => {
       switch (navListItem) {
         case 'Vegetables':
           header = 'Vegetables';
-          subHeader = 'Choose a vegetable you want to grow:';
+          subHeader = 'Click icon for more information:';
           break;
         case 'Soil':
           header = 'Soil';
           subHeader = 'Improve your soil with these methods:';
           break;
-        case 'Layout':
-          header = 'Layout';
-          subHeader = 'Select a garden design:';
-          break;
         case 'Pests':
           header = 'Pests';
           subHeader = 'Learn about your garden\'s enemies:';
+          break;
       }
       return <Fragment>
         <Typography className={heading} variant="h4" >
@@ -78,7 +68,7 @@ export default({navListItem}) => {
     <div className={main}>
       <div className={toolbar} />
         <Grid container>
-          <Grid item xs={12}>
+          <Grid item xs={12} className={gridItem}>
           {/* <Typography className={heading} variant="h4" >
           Vegetables
         </Typography>
@@ -97,7 +87,6 @@ export default({navListItem}) => {
 
 
 const styles = makeStyles(theme => ({
-  toolbar: theme.mixins.toolbar,
   backgroundStyle: {
     flexGrow: 1,
     padding: theme.spacing(3),
@@ -113,26 +102,58 @@ const styles = makeStyles(theme => ({
       height: '100%'
     }
   },
+  main: {
+    background: `linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5))`,
+    height: '100%',
+    paddingBottom: 20,
+    margin: -24,
+    // [theme.breakpoints.down('md')]: {
+    //   // height: '30vh'
+    //   height: '90%',
+    //   paddingBottom: 20
+    // },
+  },
+  toolbar: theme.mixins.toolbar,
+  gridItem: {
+    [theme.breakpoints.down('xs')]: {
+      marginTop: 10
+    },
+  },
+  welcome: {
+    justifyContent: 'center', 
+    // [theme.breakpoints.down('xs')]: {
+    //   marginLeft: -15
+    // }
+  },
+  banner : {
+    color: '#222222',
+    textAlign: 'center',
+    fontFamily: theme.fontFamily.primary,
+    [theme.breakpoints.down('md')]: {
+      fontSize: 35,
+    }
+  },
+  blue:{
+    color: '#001e73',
+    fontWeight: 'bold'
+  },
+  red: {
+    color: '#ce0012',
+    fontWeight: 'bold'
+  },
   heading: {
     color: '#222222',
+    textAlign: 'center',
     letterSpacing: 5,
     fontWeight: 'bold',
     "fontFamily": "\"Cinzel\", serif",
-    [theme.breakpoints.down('xs')]: {
-      fontSize: 30
+    [theme.breakpoints.down('md')]: {
+      fontSize: 30,
     }
   },
   subheading: {
     [theme.breakpoints.down('md')]: {
       fontSize: 18
     }
-  },
-  main: {
-    background: `linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5))`,
-    height: '30vh',
-    margin: -24
-  },
-  test: {
-    fontSize: 60
   }
 }));
