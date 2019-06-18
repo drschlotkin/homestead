@@ -79,7 +79,7 @@ const VegetableDialog = (props) => {
         <DialogTitle onClose={handleClose} classes={classes}>
           <Bold style={{fontFamily: "\"Libre Franklin\", sans-serif", color: '#f3f3ee'}}>{name}</Bold>
         </DialogTitle>
-        <MuiDialogContent dividers style={{backgroundColor: '#f3f3ee'}}>
+        <MuiDialogContent dividers>
           <Typography gutterBottom className={classes.paragraph}>
             <Bold>Description: </Bold>{description} 
           </Typography>
@@ -172,4 +172,4 @@ const styles = makeStyles(theme => ({
   }
 }))
 
-export default withMobileDialog()(Vegetables);
+export default withMobileDialog({breakpoint: 'xs'})(Vegetables);

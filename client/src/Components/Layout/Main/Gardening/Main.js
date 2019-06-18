@@ -49,7 +49,7 @@ export default({navListItem}) => {
           break;
         case 'Pests':
           header = 'Pests';
-          subHeader = 'Learn about your garden\'s enemies:';
+          subHeader = 'Protect your vegetables from these pests:';
           break;
       }
       return <Fragment>
@@ -135,11 +135,11 @@ const styles = makeStyles(theme => ({
   },
   blue:{
     color: '#001e73',
-    fontWeight: 'bold'
+    
   },
   red: {
     color: '#ce0012',
-    fontWeight: 'bold'
+   
   },
   heading: {
     color: '#222222',

@@ -4,7 +4,7 @@ Introduction: Simply adding compost and lime to your soil every year is usually 
 
 Main: To take a soil sample - remove any mulch from the top of your soil and dig down 4-6 inches using a clean garden tool. Remove your soil sample and repeat the same process at random locations around your garden.
 
-Ending: You can pick up soil testing kits at your local nursey or store. You can also get your soil tested at a labratory. Check https://www.flr.gov.nl.ca/department/contact_lrsd.html#services for soil testing facilities in your area. For home gardeners, a routine soil analysis costs $20.00 + HST, and $7.00 + HST for pH and lime requirements.
+Ending: You can pick up soil testing kits at your local nursey or store. You can also get your soil tested at a labratory. Click <a href="https://www.flr.gov.nl.ca/department/contact_lrsd.html#services" target="_blank">here</a> for a list of soil testing facilities. For home gardeners, a routine soil analysis costs $20.00 + HST, and $7.00 + HST for pH and lime requirements. 
 
 Fertilizer:
 
@@ -16,11 +16,16 @@ Ending: In summary, chemical fertilizers are fast acting but have no long-term b
 
 Composting:
 
-Introduction: In compost, microorganisms, worms and fungi help break down the organic material. The end result is a humus-like material that can be used as a natural alternative to chemical fertilizers. Composting is also an effective way to cut down on waste sent to the landfill.
+Introduction: In compost, microorganisms, worms and fungi help break down the organic material. The end result is a humus-like material that can be used as a natural alternative to chemical fertilizers. Composting is also an effective way to cut down on waste sent to the landfill. 
 
 Main: All compostable materials are either carbon or nitrogen-based. For your compost pile to work effectively, you will need a proper balance of both. You don't have to be exact but a ratio of 3 parts carbon to 1 part nitrogen is a good rule of thumb. Carbon materials tend to be brown such as leaves, cardboard, paper and wood products. Nitrogen materials tend to be green (but not always) such as kitchen scraps, grass clippings, plants, manure and coffee grounds. Avoid adding dairy or animals products to your compost bin as these will attract pests. 
 
 Ending: Your compost also needs oxygen and moisture. Without air, your pile will turn anaerobic and will start to smell. You can fix this by turning your pile every week or two. Your compost pile should be moist but not waterlogged and should have the consistency of a damp sponge.
 
+No-Till:
 
+Introduction: Tilling is used to break up soil, turn up weeds, and as way of controlling insects that overwinter in your garden. Tilling does introduce organic matter and oxygen into the soil but there is ample evidence that it is also very hard on soil. Tilling damages fungal networks and beneficial microorganisms that are essential to building healthy soil.
 
+Main: To get started with a no-till garden, put down a layer of plain, brown cardboard on top of the bare ground. The cardboard will prevent weeds from growing and is also food for worms. Cover the cardboard with a 2 inch layer of aged manure or compost. If you have an existing garden, you can skip those steps. Next, mulch the garden with a 4 inch layer of organic material such as rotted leaves, wood chips, and pine needles. Lastly, give the mulch lots of water. At the end of the season, after you have harvested your crop, cut the plants at the stem or leave them intact to rot and compost in the soil. The following year, top up your bed with a 2 inch layer of mulch and compost.
+
+Closure: The main goal of no-till gardening is to leave the soil intact as much as possible to protect the microbiology. Mulches lock in soil moisture and suppress weeds, requiring less maintenance to your garden.

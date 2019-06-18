@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './Components/App';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
-import 'babel-polyfill';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 const theme = createMuiTheme({

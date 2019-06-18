@@ -1,6 +1,5 @@
 import React from 'react'
 import {Typography, withMobileDialog, IconButton, Dialog, makeStyles, Grid, Card, CardMedia, CardActionArea, CardContent } from '@material-ui/core'
-import Linkify from 'linkifyjs/react';
 import CloseIcon from '@material-ui/icons/Close';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
@@ -32,7 +31,8 @@ const Soil = (props) => {
         {Object.keys(soil).map((index, key) => {
           let title = soil[index].title
           let img = title.replace(/ /g,"_");
-          return <Grid item xs className={gridItem} key={key}>
+          
+          return <Grid item xs={6} className={gridItem} key={key}>
             <Card className={cardStyle}>
               <CardActionArea onClick={() => handleClickOpen(index)}>
                 <CardMedia image={require(`../Assets/${img}.jpg`)} className={media}/>
@@ -68,7 +68,7 @@ const SoilDialog = (props) => {
   if (props.data){
     const { classes, onClose, ...other } = props,
           {title, introduction, body, closure} = props.data;
-      
+  
     function handleClose() {
       onClose();
     };
@@ -78,15 +78,14 @@ const SoilDialog = (props) => {
         <DialogTitle onClose={handleClose} classes={classes}>
           <Bold style={{fontFamily: "\"Libre Franklin\", sans-serif"}}>{title}</Bold>
         </DialogTitle>
-        <MuiDialogContent dividers style={{backgroundColor: '#f3f3ee'}}>
+        <MuiDialogContent dividers>
           <Typography gutterBottom className={classes.paragraph}>
             {introduction}
           </Typography>
           <Typography gutterBottom className={classes.paragraph}>
             {body}
           </Typography>
-          <Typography gutterBottom className={classes.paragraph}>
-            <Linkify>{closure}</Linkify>
+          <Typography gutterBottom className={classes.paragraph} dangerouslySetInnerHTML={{ __html: closure}}>
           </Typography>
         </MuiDialogContent>  
       </Dialog>
@@ -123,37 +122,31 @@ const Bold = styled.span`
 const styles = makeStyles(theme => ({
   mainGrid:{
     marginTop: 50,
-    // marginLeft: 10,
-    // [theme.breakpoints.down('sm')]: {
-    //   marginLeft: 0
-    // }
   },
   gridItem: {
     textAlign: 'center',
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: '100%',
+      flexBasis: '100%',
+      marginBottom: 0
+    }
   },
   cardStyle: {
-    maxWidth: 385,
+    maxWidth: 400,
     marginTop: 40,
     display: 'inline-block',
     [theme.breakpoints.down('md')]: {
-      // marginTop: 20,
-      width: 300,
+      maxWidth: 310
     }
   },
   media: {
-    paddingTop: '25%',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    width: 386,
-    height: 230,
+    height: 0,
+    paddingTop: '50%'
   },
   cardTitle:{
     color: 'black',
     "fontFamily": "\"Cinzel\", serif",
     fontWeight: 'bold',
-    // [theme.breakpoints.down('md')]: {
-    //   fontSize: 15
-    // }
   },
   caption: {
     color: 'black', 
@@ -177,4 +170,4 @@ const styles = makeStyles(theme => ({
   }
 }))
 
-export default withMobileDialog()(Soil);
+export default withMobileDialog({breakpoint: 'xs'})(Soil);
