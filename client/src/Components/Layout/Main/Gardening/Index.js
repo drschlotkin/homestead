@@ -9,7 +9,8 @@ export default class extends Component {
     navListItem: '',
     vegetableData: {},
     vegetableNames: [],
-    soil: {}
+    soil: {},
+    pests: {}
   }
 
   handleTopicSelected = (topic) => {
@@ -48,7 +49,6 @@ export default class extends Component {
     }})
     .then(res => res.json())
     .then(res => {
-      console.log(res)
       this.setState({    
         soil: res
       })
@@ -57,9 +57,28 @@ export default class extends Component {
     });
 
 
+  /* Load pest information from database */  
+  getPests = () =>
+  fetch('http://localhost:5000/api/pests', {
+    headers : { 
+    'Content-Type': 'application/json',
+    'Accept': 'application/json'
+  }})
+  .then(res => res.json())
+  .then(res => {
+    console.log(res)
+    this.setState({    
+      pests: res
+    })
+  }).catch(err => {
+    if (err) console.log(err);
+  });
+
+
   componentDidMount = () => {
     this.getVegetableList();
     this.getSoil();
+    this.getPests();
   }
 
   
@@ -67,6 +86,7 @@ export default class extends Component {
     vegetableData: this.state.vegetableData,
     vegetableNames: this.state.vegetableNames,
     soil: this.state.soil,
+    pests: this.state.pests,
     onTopicSelect: this.handleTopicSelected,
     topics: ['Vegetables', 'Soil', 'Pests']
   });

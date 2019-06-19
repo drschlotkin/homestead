@@ -26,6 +26,7 @@ app.use((req, res, next) => {
 
 app.use('/api/vegetables', require('./api/vegetables'));
 app.use('/api/soil', require('./api/soil'));
+app.use('/api/pests', require('./api/pests'));
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}...`)

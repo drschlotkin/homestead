@@ -50,6 +50,15 @@ export default() => {
               Livestock
             </Typography>
           </ListItem>
+          <Divider />
+          <ListItem button className={listItems}>
+            <ListItemIcon>
+              <img src={require(`./Assets/community.png`)} height="42" width="42" />
+            </ListItemIcon>
+            <Typography variant="h5" className={listName}>
+              Community
+            </Typography>
+          </ListItem>
         </List>
       </Fragment>
     }    

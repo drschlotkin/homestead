@@ -1,10 +1,7 @@
 import React, {Fragment} from 'react';
 import { AppBar, Drawer, Hidden, IconButton, Toolbar, Typography, makeStyles } from '@material-ui/core';
-import { useTheme } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import NavLinks from './NavLinks';
-
-// DELETE HEADER IN TYPOGRAPHY
 
 const drawerWidth = 300;
 
@@ -22,8 +19,6 @@ export default() => {
       <Toolbar className={toolBar}>
         <IconButton
           color="inherit"
-          // aria-label="Open drawer"
-          // edge="start"
           onClick={handleDrawerToggle}
           className={menuButton}
         >
@@ -38,13 +33,11 @@ export default() => {
     <nav className={drawer}>
       <Hidden smUp implementation="css">
         <Drawer
-          variant="temporary"
-          // anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+          variant="temporary"     
           open={mobileOpen}
           onClose={handleDrawerToggle}
           onClick={handleDrawerToggle}
           classes={{ paper: drawerPaper }}
-          // ModalProps={{ keepMounted: true }}
         >
           <NavLinks onClose={handleDrawerToggle}/>
         </Drawer>
@@ -66,7 +59,7 @@ const useStyles = makeStyles(theme => ({
   drawer: {
     [theme.breakpoints.up('sm')]: {
       width: drawerWidth,
-      flexShrink: 0,
+      flexShrink: 0
     },
   },
   appBar: {
@@ -74,11 +67,10 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: 'transparent',
     boxShadow: 'none',
     [theme.breakpoints.up('sm')]: {
-      width: `calc(100% - ${drawerWidth}px)`,
+      width: `calc(100% - ${drawerWidth}px)`
     },
     [theme.breakpoints.down('sm')]: {
-      backgroundColor: '#424242',
-      
+      backgroundColor: '#424242'
     },
   },
   toolBar: {
@@ -88,9 +80,8 @@ const useStyles = makeStyles(theme => ({
   menuButton: {
     marginRight: theme.spacing(2),
     [theme.breakpoints.up('sm')]: {
-      display: 'none',
+      display: 'none'
     },
-    
   },
   toolbar: theme.mixins.toolbar,
   drawerPaper: {

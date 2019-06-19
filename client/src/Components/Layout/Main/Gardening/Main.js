@@ -7,10 +7,9 @@ import Pests from './Pests'
 
 
 export default({navListItem}) => {
-  const {welcome, heading, subheading, main, backgroundStyle, toolbar, blue, red, banner, gridItem} = styles();
+  const {heading, subheading, main, backgroundStyle, toolbar, blue, red, banner, gridItem} = styles();
   
   /* Render body text based on nav bar selection */
-
   const renderContent = () => {
     switch(navListItem){
       case 'Vegetables':
@@ -30,7 +29,7 @@ export default({navListItem}) => {
     if (!navListItem) {
       return (
         <List style={{width: '70%', margin: 'auto'}}>
-          <ListItem className={welcome}>
+          <ListItem style={{justifyContent: 'center'}}>
             <Typography className={banner} variant="h2" >
               NL <span className={blue}>Gardeners</span> & <span className={red}>Homesteaders</span>
             </Typography>
@@ -49,7 +48,7 @@ export default({navListItem}) => {
           break;
         case 'Pests':
           header = 'Pests';
-          subHeader = 'Protect your vegetables from these pests:';
+          subHeader = 'Click for preventative measures:';
           break;
       }
       return <Fragment>
@@ -106,24 +105,13 @@ const styles = makeStyles(theme => ({
     background: `linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5))`,
     height: '100%',
     paddingBottom: 20,
-    margin: -24,
-    // [theme.breakpoints.down('md')]: {
-    //   // height: '30vh'
-    //   height: '90%',
-    //   paddingBottom: 20
-    // },
+    margin: -24
   },
   toolbar: theme.mixins.toolbar,
   gridItem: {
     [theme.breakpoints.down('xs')]: {
       marginTop: 10
     },
-  },
-  welcome: {
-    justifyContent: 'center', 
-    // [theme.breakpoints.down('xs')]: {
-    //   marginLeft: -15
-    // }
   },
   banner : {
     color: '#222222',
@@ -135,11 +123,9 @@ const styles = makeStyles(theme => ({
   },
   blue:{
     color: '#001e73',
-    
   },
   red: {
     color: '#ce0012',
-   
   },
   heading: {
     color: '#222222',

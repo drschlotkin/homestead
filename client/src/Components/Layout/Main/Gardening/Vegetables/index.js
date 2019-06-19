@@ -106,7 +106,7 @@ const DialogTitle = props => {
    <MuiDialogTitle disableTypography className={classes.root}>
       <Typography variant="h6">{children}</Typography>
       {onClose ? (
-        <IconButton aria-label="Close" className={classes.closeButton} onClick={onClose}>
+        <IconButton className={classes.closeButton} onClick={onClose}>
           <CloseIcon />
         </IconButton>
       ) : null}
@@ -164,7 +164,7 @@ const styles = makeStyles(theme => ({
     position: 'absolute',
     right: theme.spacing(1),
     top: theme.spacing(1),
-    color: '#222222'
+    color: '#fff'
   },
   paragraph: {
     fontFamily: "\"Libre Franklin\", sans-serif", 

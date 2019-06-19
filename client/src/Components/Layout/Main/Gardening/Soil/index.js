@@ -7,6 +7,7 @@ import styled from "styled-components";
 import { Consumer } from '../context';
 
 const Soil = (props) => {
+  
   const classes = styles(),
     { fullScreen } = props,
     { mainGrid, gridItem, cardStyle, cardTitle, media, caption } = classes;
@@ -31,7 +32,6 @@ const Soil = (props) => {
         {Object.keys(soil).map((index, key) => {
           let title = soil[index].title
           let img = title.replace(/ /g,"_");
-          
           return <Grid item xs={6} className={gridItem} key={key}>
             <Card className={cardStyle}>
               <CardActionArea onClick={() => handleClickOpen(index)}>
@@ -104,7 +104,7 @@ const DialogTitle = props => {
    <MuiDialogTitle disableTypography className={classes.root}  >
       <Typography variant="h6">{children}</Typography>
       {onClose ? (
-        <IconButton aria-label="Close" className={classes.closeButton} onClick={onClose}>
+        <IconButton className={classes.closeButton} onClick={onClose}>
           <CloseIcon />
         </IconButton>
       ) : null}
@@ -161,7 +161,7 @@ const styles = makeStyles(theme => ({
     position: 'absolute',
     right: theme.spacing(1),
     top: theme.spacing(1),
-    color: '#222222',
+    color: '#fff',
   },
   paragraph: {
     fontFamily: "\"Libre Franklin\", sans-serif", 
