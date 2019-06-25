@@ -16,3 +16,5 @@ Description: Common on indoor and outdoor plants, these sap-sucking insects are 
 Ross traverse: tiny insects that suck the juice from the leaves, causing them to curl up and turn yellow. inspection of the undersides of the leaves will reveal these tiny insects
 
 Aphids are small, pear-shaped, sap-sucking insects with a “stylet,” straw-like piercing mouthparts. They often cause leaf curling and distorted growth at shoot tips. 
+
+Aphids are among the most destructive insect pests on cultivated plants in temperate regions. In addition to weakening the plant by sucking sap, they act as vectors for plant viruses and disfigure ornamental plants with deposits of honeydew and the subsequent growth of sooty moulds. 

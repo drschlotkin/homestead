@@ -24,7 +24,7 @@ const Soil = (props) => {
   const handleClose = () => {
     setOpen(false);
   };
-  
+   
   return <Consumer>
 
     {({soil}) => 
