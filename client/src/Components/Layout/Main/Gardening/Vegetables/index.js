@@ -1,5 +1,5 @@
 import React from 'react'
-import {Typography, IconButton, withMobileDialog, Dialog, Grid, Card, CardContent, CardActionArea, makeStyles, CardMedia } from '@material-ui/core';
+import {Typography, IconButton, withMobileDialog, Dialog, Divider, Grid, Card, CardContent, CardActionArea, makeStyles, CardMedia } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
@@ -10,7 +10,7 @@ import { Consumer } from '../context'
 const Vegetables = (props) => {
   const classes = styles(),
     { fullScreen } = props,
-    { mainGrid, cardStyle, media, cardTitle, gridItem } = classes;
+    { mainGrid, cardStyle, media, picture, cardTitle, gridItem } = classes;
 
   // Dialog functionality
   const [open, setOpen ] = React.useState(false);
@@ -77,17 +77,29 @@ const VegetableDialog = (props) => {
     return (
       <Dialog onClose={handleClose} {...other}>
         <DialogTitle onClose={handleClose} classes={classes}>
-          <Bold style={{fontFamily: "\"Libre Franklin\", sans-serif", color: '#f3f3ee'}}>{name}</Bold>
+          <Bold>{name}</Bold>
         </DialogTitle>
         <MuiDialogContent dividers>
-          <Typography gutterBottom className={classes.paragraph}>
-            <Bold>Description: </Bold>{description} 
+          <Typography gutterBottom className={classes.paragraph} style={{fontWeight: 'bold'}}>
+            Description
           </Typography>
+          <Divider /><br />
           <Typography gutterBottom className={classes.paragraph}>
-            <br /><Bold>When To Plant: </Bold> {start} 
+            {description}<br /><br />
           </Typography>
+          <Typography gutterBottom className={classes.paragraph} style={{fontWeight: 'bold'}}>
+            When To Plant
+          </Typography>
+          <Divider /><br />
           <Typography gutterBottom className={classes.paragraph}>
-            <br /><Bold>Harvesting & Storage: </Bold>{harvest}
+            {start}<br /><br />
+          </Typography>
+          <Typography gutterBottom className={classes.paragraph} style={{fontWeight: 'bold'}}>
+            Harvesting & Storage
+          </Typography>
+          <Divider /><br />
+          <Typography gutterBottom className={classes.paragraph}>
+            {harvest}<br /><br /> 
           </Typography>
         </MuiDialogContent>
       </Dialog>
@@ -100,11 +112,15 @@ const VegetableDialog = (props) => {
 
 /* Display modal title and close icon */
 const DialogTitle = props => {
-  const { children, classes, onClose } = props;
-  
+  const { children, classes, onClose } = props,
+        picture = props.children.props.children;
   return (
-   <MuiDialogTitle disableTypography className={classes.root}>
-      <Typography variant="h6">{children}</Typography>
+   <MuiDialogTitle disableTypography style={{display: 'block'}} className={classes.root}>
+      <Typography variant="h6" style={{display: 'block', float: 'left'}}>
+        {children}
+      </Typography> 
+      <CardMedia image={require(`../Assets/${picture}.png`)} className={classes.picture}/>
+      
       {onClose ? (
         <IconButton className={classes.closeButton} onClick={onClose}>
           <CloseIcon />
@@ -117,7 +133,9 @@ const DialogTitle = props => {
 
 /* CSS */
 const Bold = styled.span`
-  font-weight: bold;
+
+  font-family: Libre Franklin, sans-serif;
+  color: #f3f3ee;
 `;
 
 const styles = makeStyles(theme => ({
@@ -147,6 +165,13 @@ const styles = makeStyles(theme => ({
       height: 50,
     }
   },
+  picture: {
+    float: 'left',
+    display: 'block',
+    marginLeft: 10,
+    width: 30,
+    height: 30,
+  }, 
   cardTitle:{
     color: 'black',
     "fontFamily": "\"Cinzel\", serif",

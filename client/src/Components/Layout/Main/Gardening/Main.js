@@ -21,9 +21,6 @@ export default({navListItem}) => {
     };
   };
 
-  const test = 'Dolore nostrud enim ea fugiat amet cupidatat enim. Fugiat qui tempor adipisicing velit et officia aliqua aliqua culpa ad veniam fugiat. Velit voluptate pariatur minim labore occaecat qui velit nostrud non deserunt non est voluptate. Quis est veniam sint nisi do.'
-
-  console.log(test)
   
   /* Render header text based on nav bar selection */
   const renderHeader = () => {

@@ -1,8 +1,9 @@
-import React from 'react'
-import {Typography, withMobileDialog, IconButton, Dialog, makeStyles, Grid, Card, CardMedia, CardActionArea, CardContent } from '@material-ui/core'
+import React, {Fragment} from 'react'
+import {Typography, ListItem, Divider, ListItemIcon, withMobileDialog, IconButton, Dialog, makeStyles, Grid, Card, CardMedia, CardActionArea, CardContent } from '@material-ui/core'
 import CloseIcon from '@material-ui/icons/Close';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
+import Lens from '@material-ui/icons/Lens';
 import styled from "styled-components";
 import { Consumer } from '../context';
 
@@ -50,50 +51,67 @@ const Pests = (props) => {
         })}
 
         {/* Modal Element */}
-        {/* <SoilDialog 
+        <PestDialog 
           open={open}
           fullScreen={fullScreen}
+          maxWidth="md"
           onClose={handleClose} 
           classes={classes}
-          data={pest[selectedId]} 
-        /> */}
+          data={pests[selectedId]} 
+        />
     </Grid>
   }
   </Consumer>
 };
 
 // Modal Window
-// const SoilDialog = (props) => {
+const PestDialog = (props) => {
   
-//   if (props.data){
-//     const { classes, onClose, ...other } = props,
-//           {title, introduction, body, closure} = props.data;
-  
-//     function handleClose() {
-//       onClose();
-//     };
+  if (props.data) {
+
+    const { classes, onClose, ...other } = props,
+          {name, controls} = props.data;
+
+    const handleClose = () => {
+      onClose();
+    };
+
+    let bullets = controls.split('.');
+
+    const displayBullets = () => {
+      return <Fragment>
+        {Object.keys(bullets).map((index, key) => {
+          return <ListItem key={key}>
+            <ListItemIcon style={{marginBottom: 10}}>
+              <Lens className={props.classes.bullet}/>
+            </ListItemIcon>  
+            <Typography gutterBottom className={classes.paragraph}>
+              {bullets[index]}
+            </Typography>
+          </ListItem>
+        })}
+      </Fragment>
+    };
     
-//     return (
-//       <Dialog onClose={handleClose} {...other}>
-//         <DialogTitle onClose={handleClose} classes={classes}>
-//           <Bold style={{fontFamily: "\"Libre Franklin\", sans-serif"}}>{title}</Bold>
-//         </DialogTitle>
-//         <MuiDialogContent dividers>
-//           <Typography gutterBottom className={classes.paragraph}>
-//             {introduction}
-//           </Typography>
-//           <Typography gutterBottom className={classes.paragraph}>
-//             {body}
-//           </Typography>
-//           <Typography gutterBottom className={classes.paragraph} dangerouslySetInnerHTML={{ __html: closure}}>
-//           </Typography>
-//         </MuiDialogContent>  
-//       </Dialog>
-//     );
-//   }else{
-//     return null;
-//   };
-// };
+    return (
+      <Dialog onClose={handleClose} {...other}>
+        <DialogTitle onClose={handleClose} classes={classes}>
+          <Bold style={{fontFamily: "\"Libre Franklin\", sans-serif"}}>{name}</Bold>
+        </DialogTitle>
+        <MuiDialogContent dividers>           
+          <Typography gutterBottom className={classes.paragraph}>
+            Try these methods to prevent damage to your crop:
+          </Typography>
+          <Divider />
+          <br />
+          {displayBullets()}
+        </MuiDialogContent>  
+      </Dialog>
+    );
+  }else{
+    return null;
+  };
+};
 
 
 /* Display modal title and close icon */
@@ -101,7 +119,7 @@ const DialogTitle = props => {
   const { children, classes, onClose } = props;
   
   return (
-   <MuiDialogTitle disableTypography className={classes.root}  >
+   <MuiDialogTitle disableTypography className={classes.root}>
       <Typography variant="h6">{children}</Typography>
       {onClose ? (
         <IconButton className={classes.closeButton} onClick={onClose}>
@@ -166,8 +184,12 @@ const styles = makeStyles(theme => ({
   paragraph: {
     fontFamily: "\"Libre Franklin\", sans-serif", 
     fontSize: 18,
-    marginBottom: 15
-  }
+  },
+  bullet: {
+    color: '#5d9aaf',
+    width: 10,
+    height: 10 
+  },
 }))
 
 export default withMobileDialog({breakpoint: 'xs'})(Pests);

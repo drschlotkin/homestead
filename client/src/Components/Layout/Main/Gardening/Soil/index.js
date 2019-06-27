@@ -1,5 +1,5 @@
 import React from 'react'
-import {Typography, withMobileDialog, IconButton, Dialog, makeStyles, Grid, Card, CardMedia, CardActionArea, CardContent } from '@material-ui/core'
+import {Typography, withMobileDialog, IconButton, Divider, Dialog, makeStyles, Grid, Card, CardMedia, CardActionArea, CardContent } from '@material-ui/core'
 import CloseIcon from '@material-ui/icons/Close';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
@@ -82,9 +82,11 @@ const SoilDialog = (props) => {
           <Typography gutterBottom className={classes.paragraph}>
             {introduction}
           </Typography>
+          <Divider /><br />
           <Typography gutterBottom className={classes.paragraph}>
             {body}
           </Typography>
+          <Divider /><br />
           <Typography gutterBottom className={classes.paragraph} dangerouslySetInnerHTML={{ __html: closure}}>
           </Typography>
         </MuiDialogContent>  
