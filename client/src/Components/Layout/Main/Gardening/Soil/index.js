@@ -76,9 +76,10 @@ const SoilDialog = (props) => {
     return (
       <Dialog onClose={handleClose} {...other}>
         <DialogTitle onClose={handleClose} classes={classes}>
-          <Bold style={{fontFamily: "\"Libre Franklin\", sans-serif"}}>{title}</Bold>
+          <Title>{title}</Title>
         </DialogTitle>
-        <MuiDialogContent dividers>
+        <MuiDialogContent dividers style={{backgroundColor: '#fafafa'}}>
+          <br />
           <Typography gutterBottom className={classes.paragraph}>
             {introduction}
           </Typography>
@@ -116,8 +117,8 @@ const DialogTitle = props => {
 
 /* CSS */
 
-const Bold = styled.span`
-  font-weight: bold;
+const Title = styled.span`
+  font-family: Libre Franklin, sans-serif;
   color: #f3f3ee;
 `;
 

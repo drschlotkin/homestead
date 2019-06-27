@@ -29,6 +29,7 @@ export default class extends Component {
     }})
     .then(res => res.json())
     .then(res => {
+      
       let arr = [];
       Object.keys(res).forEach(key => arr.push(res[key].name))
       this.setState({    

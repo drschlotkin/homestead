@@ -1,2 +1,5 @@
 /node_modules
 projectnotes.txt
+/src/Components/Layout/Main/Gardening/Pests/sql.txt
+/src/Components/Layout/Main/Gardening/Soil/sql.txt
+/src/Components/Layout/Main/Gardening/Vegetables/sql.txt

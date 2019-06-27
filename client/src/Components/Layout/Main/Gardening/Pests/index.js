@@ -96,7 +96,7 @@ const PestDialog = (props) => {
     return (
       <Dialog onClose={handleClose} {...other}>
         <DialogTitle onClose={handleClose} classes={classes}>
-          <Bold style={{fontFamily: "\"Libre Franklin\", sans-serif"}}>{name}</Bold>
+          <Title>{name}</Title>
         </DialogTitle>
         <MuiDialogContent dividers>           
           <Typography gutterBottom className={classes.paragraph}>
@@ -132,8 +132,8 @@ const DialogTitle = props => {
 
 /* CSS */
 
-const Bold = styled.span`
-  font-weight: bold;
+const Title = styled.span`
+  font-family: Libre Franklin, sans-serif;
   color: #f3f3ee;
 `;
 

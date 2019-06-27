@@ -77,9 +77,9 @@ const VegetableDialog = (props) => {
     return (
       <Dialog onClose={handleClose} {...other}>
         <DialogTitle onClose={handleClose} classes={classes}>
-          <Bold>{name}</Bold>
+          <Title>{name}</Title>
         </DialogTitle>
-        <MuiDialogContent dividers>
+        <MuiDialogContent dividers style={{backgroundColor: '#fafafa'}}>
           <Typography gutterBottom className={classes.paragraph} style={{fontWeight: 'bold'}}>
             Description
           </Typography>
@@ -88,7 +88,7 @@ const VegetableDialog = (props) => {
             {description}<br /><br />
           </Typography>
           <Typography gutterBottom className={classes.paragraph} style={{fontWeight: 'bold'}}>
-            When To Plant
+            Planting Instructions:
           </Typography>
           <Divider /><br />
           <Typography gutterBottom className={classes.paragraph}>
@@ -99,7 +99,7 @@ const VegetableDialog = (props) => {
           </Typography>
           <Divider /><br />
           <Typography gutterBottom className={classes.paragraph}>
-            {harvest}<br /><br /> 
+            {harvest}
           </Typography>
         </MuiDialogContent>
       </Dialog>
@@ -132,8 +132,7 @@ const DialogTitle = props => {
 
 
 /* CSS */
-const Bold = styled.span`
-
+const Title = styled.span`
   font-family: Libre Franklin, sans-serif;
   color: #f3f3ee;
 `;
@@ -168,7 +167,7 @@ const styles = makeStyles(theme => ({
   picture: {
     float: 'left',
     display: 'block',
-    marginLeft: 10,
+    marginLeft: 15,
     width: 30,
     height: 30,
   }, 
@@ -180,6 +179,7 @@ const styles = makeStyles(theme => ({
       fontSize: 15
     }
   },
+  // #f0f2f2
   root: {
     margin: 0,
     padding: theme.spacing(2),
