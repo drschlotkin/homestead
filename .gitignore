@@ -1,6 +1,4 @@
 /node_modules
 /client/node_modules
 /unsplash.txt
-/client/src/Components/Layout/Main/Gardening/Pests/sql.txt
-/client/src/Components/Layout/Main/Gardening/Soil/sql.txt
-/client/src/Components/Layout/Main/Gardening/Vegetables/sql.txt
+**/*.txt
