@@ -2,7 +2,7 @@
 
 ## Introduction
 
-* This is a learning resource for people that want to get into gardening
+* This is a learning resource for people that want to get into gardening and homesteading
 * Built using React, Material UI and PostgreSQL for the database.
 
 ## Install
@@ -19,7 +19,7 @@ Install the project's back-end dependencies in the **root** folder using `npm`.
 npm install
 ```
 
-To start application
+Start application in the **root** folder
 
 ```
 npm run dev

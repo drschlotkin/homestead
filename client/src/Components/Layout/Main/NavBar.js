@@ -1,19 +1,21 @@
 import React, {Fragment} from 'react';
 import { AppBar, Drawer, Hidden, IconButton, Toolbar, Typography, makeStyles } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
-import NavLinks from './NavLinks';
+import GardeningLinks from './NavLinks';
+import LivestockLinks from './Livestock/NavLinks';
 
 const drawerWidth = 300;
 
 export default() => {
   
   const {appBar, toolBar, menuButton, drawer, drawerPaper} = useStyles(),
-    // theme = useTheme(),
-    [mobileOpen, setMobileOpen] = React.useState(false);
+        [mobileOpen, setMobileOpen] = React.useState(false),
+        currentPage = window.location.pathname;
 
   const handleDrawerToggle = () => 
     setMobileOpen(!mobileOpen);
-    
+
+  
   return <Fragment>
     <AppBar position="fixed" className={appBar}>
       <Toolbar className={toolBar}>
@@ -39,13 +41,23 @@ export default() => {
           onClick={handleDrawerToggle}
           classes={{ paper: drawerPaper }}
         >
-          <NavLinks onClose={handleDrawerToggle}/>
+          { currentPage === '/gardening' ? 
+              <GardeningLinks onClose={handleDrawerToggle}/> 
+            : currentPage === '/livestock' ?
+              <LivestockLinks onClose={handleDrawerToggle}/> 
+            : null
+          }
         </Drawer>
       </Hidden>
 
       <Hidden xsDown implementation="css">
         <Drawer classes={{ paper: drawerPaper }} variant="permanent" open>
-          <NavLinks/>
+          { currentPage === '/gardening' ? 
+              <GardeningLinks onClose={handleDrawerToggle}/> 
+            : currentPage === '/livestock' ?
+              <LivestockLinks onClose={handleDrawerToggle}/> 
+            : null
+          }
         </Drawer>
       </Hidden>
     </nav>
@@ -83,7 +95,6 @@ const useStyles = makeStyles(theme => ({
       display: 'none'
     },
   },
-  toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth,
     backgroundColor: '#222222'

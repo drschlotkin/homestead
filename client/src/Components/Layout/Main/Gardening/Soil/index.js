@@ -4,7 +4,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import styled from "styled-components";
-import { Consumer } from '../context';
+import { Consumer } from '../../context';
 
 const Soil = (props) => {
   
@@ -35,7 +35,7 @@ const Soil = (props) => {
           return <Grid item xs={6} className={gridItem} key={key}>
             <Card className={cardStyle}>
               <CardActionArea onClick={() => handleClickOpen(index)}>
-                <CardMedia image={require(`../Assets/${img}.jpg`)} className={media}/>
+                <CardMedia image={require(`../../Assets/${img}.jpg`)} className={media}/>
                 <CardContent>
                   <Typography gutterBottom className={cardTitle} variant="h5" component="h2">
                     {soil[index].title}
@@ -73,26 +73,24 @@ const SoilDialog = (props) => {
       onClose();
     };
     
-    return (
-      <Dialog onClose={handleClose} {...other}>
-        <DialogTitle onClose={handleClose} classes={classes}>
-          <Title>{title}</Title>
-        </DialogTitle>
-        <MuiDialogContent dividers style={{backgroundColor: '#fafafa'}}>
-          <br />
-          <Typography gutterBottom className={classes.paragraph}>
-            {introduction}
-          </Typography>
-          <Divider /><br />
-          <Typography gutterBottom className={classes.paragraph}>
-            {body}
-          </Typography>
-          <Divider /><br />
-          <Typography gutterBottom className={classes.paragraph} dangerouslySetInnerHTML={{ __html: closure}}>
-          </Typography>
-        </MuiDialogContent>  
-      </Dialog>
-    );
+    return <Dialog onClose={handleClose} {...other}>
+      <DialogTitle onClose={handleClose} classes={classes}>
+        <Title>{title}</Title>
+      </DialogTitle>
+      <MuiDialogContent dividers style={{backgroundColor: '#fafafa'}}>
+        <br />
+        <Typography gutterBottom className={classes.paragraph}>
+          {introduction}
+        </Typography>
+        <Divider /><br />
+        <Typography gutterBottom className={classes.paragraph}>
+          {body}
+        </Typography>
+        <Divider /><br />
+        <Typography gutterBottom className={classes.paragraph} dangerouslySetInnerHTML={{ __html: closure}}>
+        </Typography>
+      </MuiDialogContent>  
+    </Dialog>
   }else{
     return null;
   };
@@ -103,20 +101,17 @@ const SoilDialog = (props) => {
 const DialogTitle = props => {
   const { children, classes, onClose } = props;
   
-  return (
-   <MuiDialogTitle disableTypography className={classes.root}  >
-      <Typography variant="h6">{children}</Typography>
-      {onClose ? (
-        <IconButton className={classes.closeButton} onClick={onClose}>
-          <CloseIcon />
-        </IconButton>
-      ) : null}
-    </MuiDialogTitle> 
-  );
+  return <MuiDialogTitle disableTypography className={classes.root}  >
+    <Typography variant="h6">{children}</Typography>
+    {onClose ? (
+      <IconButton className={classes.closeButton} onClick={onClose}>
+        <CloseIcon />
+      </IconButton>
+    ) : null}
+  </MuiDialogTitle> 
 };
 
 /* CSS */
-
 const Title = styled.span`
   font-family: Libre Franklin, sans-serif;
   color: #f3f3ee;

@@ -5,7 +5,7 @@ import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import Lens from '@material-ui/icons/Lens';
 import styled from "styled-components";
-import { Consumer } from '../context';
+import { Consumer } from '../../context';
 
 const Pests = (props) => {
   const classes = styles(),
@@ -32,11 +32,10 @@ const Pests = (props) => {
         {Object.keys(pests).map((index, key) => {
           let name = pests[index].name
           let img = name.replace(/ /g,"_");
-          
           return <Grid item xs={6} className={gridItem} key={key}>
             <Card className={cardStyle}>
               <CardActionArea onClick={() => handleClickOpen(index)}>
-                <CardMedia image={require(`../Assets/${img}.jpg`)} className={media}/>
+                <CardMedia image={require(`../../Assets/${img}.jpg`)} className={media}/>
                 <CardContent>
                   <Typography gutterBottom className={cardTitle} variant="h5" component="h2">
                     {pests[index].name}
@@ -93,21 +92,19 @@ const PestDialog = (props) => {
       </Fragment>
     };
     
-    return (
-      <Dialog onClose={handleClose} {...other}>
-        <DialogTitle onClose={handleClose} classes={classes}>
-          <Title>{name}</Title>
-        </DialogTitle>
-        <MuiDialogContent dividers>           
-          <Typography gutterBottom className={classes.paragraph}>
-            Try these methods to prevent damage to your crop:
-          </Typography>
-          <Divider />
-          <br />
-          {displayBullets()}
-        </MuiDialogContent>  
-      </Dialog>
-    );
+    return <Dialog onClose={handleClose} {...other}>
+      <DialogTitle onClose={handleClose} classes={classes}>
+        <Title>{name}</Title>
+      </DialogTitle>
+      <MuiDialogContent dividers style={{backgroundColor: '#fafafa'}}>           
+        <Typography gutterBottom className={classes.paragraph}>
+          Try these methods to prevent damage to your crop:
+        </Typography>
+        <Divider />
+        <br />
+        {displayBullets()}
+      </MuiDialogContent>  
+    </Dialog>
   }else{
     return null;
   };
@@ -117,18 +114,16 @@ const PestDialog = (props) => {
 /* Display modal title and close icon */
 const DialogTitle = props => {
   const { children, classes, onClose } = props;
-  
-  return (
-   <MuiDialogTitle disableTypography className={classes.root}>
-      <Typography variant="h6">{children}</Typography>
-      {onClose ? (
-        <IconButton className={classes.closeButton} onClick={onClose}>
-          <CloseIcon />
-        </IconButton>
-      ) : null}
-    </MuiDialogTitle> 
-  );
+  return <MuiDialogTitle disableTypography className={classes.root}>
+    <Typography variant="h6">{children}</Typography>
+    {onClose ? (
+      <IconButton className={classes.closeButton} onClick={onClose}>
+        <CloseIcon />
+      </IconButton>
+    ) : null}
+  </MuiDialogTitle> 
 };
+
 
 /* CSS */
 

@@ -4,13 +4,13 @@ import CloseIcon from '@material-ui/icons/Close';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import styled from "styled-components";
-import { Consumer } from '../context'
+import { Consumer } from '../../context'
 
 
 const Vegetables = (props) => {
   const classes = styles(),
     { fullScreen } = props,
-    { mainGrid, cardStyle, media, picture, cardTitle, gridItem } = classes;
+    { mainGrid, cardStyle, media, cardTitle, gridItem } = classes;
 
   // Dialog functionality
   const [open, setOpen ] = React.useState(false);
@@ -29,25 +29,24 @@ const Vegetables = (props) => {
   return <Consumer>
 
     {({vegetableData, vegetableNames}) => 
-      <Grid container className={mainGrid} >
+      <Grid container className={mainGrid}>
 
       {/* Display vegetable icons */}
         {vegetableNames.map((name, key) => {
            {/* change xs to 3 ? */}
-          return (
-            <Grid item xs={6} lg={2} key={key} className={gridItem}>
-              <Card className={cardStyle} >
-                <CardActionArea onClick={() => handleClickOpen(key)}>
-                  <CardMedia image={require(`../Assets/${name}.png`)} className={media}/>
-                  <CardContent>
-                    <Typography gutterBottom className={cardTitle} variant="h5" component="h2">
-                      {name}
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>  
-              </Card>
-            </Grid>
-          );
+           
+          return <Grid item xs={6} lg={2} key={key} className={gridItem}>
+            <Card className={cardStyle} >
+              <CardActionArea onClick={() => handleClickOpen(key)}>
+                <CardMedia image={require(`../../Assets/${name}.png`)} className={media}/>
+                <CardContent>
+                  <Typography gutterBottom className={cardTitle} variant="h5" component="h2">
+                    {name}
+                  </Typography>
+                </CardContent>
+              </CardActionArea>  
+            </Card>
+          </Grid>
         })};
        
       {/* Modal Element */}
@@ -74,36 +73,34 @@ const VegetableDialog = (props) => {
       onClose();
     };
     
-    return (
-      <Dialog onClose={handleClose} {...other}>
-        <DialogTitle onClose={handleClose} classes={classes}>
-          <Title>{name}</Title>
-        </DialogTitle>
-        <MuiDialogContent dividers style={{backgroundColor: '#fafafa'}}>
-          <Typography gutterBottom className={classes.paragraph} style={{fontWeight: 'bold'}}>
-            Description
-          </Typography>
-          <Divider /><br />
-          <Typography gutterBottom className={classes.paragraph}>
-            {description}<br /><br />
-          </Typography>
-          <Typography gutterBottom className={classes.paragraph} style={{fontWeight: 'bold'}}>
-            Planting Instructions:
-          </Typography>
-          <Divider /><br />
-          <Typography gutterBottom className={classes.paragraph}>
-            {start}<br /><br />
-          </Typography>
-          <Typography gutterBottom className={classes.paragraph} style={{fontWeight: 'bold'}}>
-            Harvesting & Storage
-          </Typography>
-          <Divider /><br />
-          <Typography gutterBottom className={classes.paragraph}>
-            {harvest}
-          </Typography>
-        </MuiDialogContent>
-      </Dialog>
-    );
+    return <Dialog onClose={handleClose} {...other}>
+      <DialogTitle onClose={handleClose} classes={classes}>
+        <Title>{name}</Title>
+      </DialogTitle>
+      <MuiDialogContent dividers style={{backgroundColor: '#fafafa'}}>
+        <Typography gutterBottom className={classes.paragraph} style={{fontWeight: 'bold'}}>
+          Description
+        </Typography>
+        <Divider /><br />
+        <Typography gutterBottom className={classes.paragraph}>
+          {description}<br /><br />
+        </Typography>
+        <Typography gutterBottom className={classes.paragraph} style={{fontWeight: 'bold'}}>
+          Planting Instructions:
+        </Typography>
+        <Divider /><br />
+        <Typography gutterBottom className={classes.paragraph}>
+          {start}<br /><br />
+        </Typography>
+        <Typography gutterBottom className={classes.paragraph} style={{fontWeight: 'bold'}}>
+          Harvesting & Storage
+        </Typography>
+        <Divider /><br />
+        <Typography gutterBottom className={classes.paragraph}>
+          {harvest}
+        </Typography>
+      </MuiDialogContent>
+    </Dialog>
   }else{
     return null;
   };
@@ -114,20 +111,18 @@ const VegetableDialog = (props) => {
 const DialogTitle = props => {
   const { children, classes, onClose } = props,
         picture = props.children.props.children;
-  return (
-   <MuiDialogTitle disableTypography style={{display: 'block'}} className={classes.root}>
-      <Typography variant="h6" style={{display: 'block', float: 'left'}}>
-        {children}
-      </Typography> 
-      <CardMedia image={require(`../Assets/${picture}.png`)} className={classes.picture}/>
-      
-      {onClose ? (
-        <IconButton className={classes.closeButton} onClick={onClose}>
-          <CloseIcon />
-        </IconButton>
-      ) : null}
-    </MuiDialogTitle> 
-  );
+
+  return <MuiDialogTitle disableTypography style={{display: 'block'}} className={classes.root}>
+    <Typography variant="h6" style={{display: 'block', float: 'left'}}>
+      {children}
+    </Typography> 
+    <CardMedia image={require(`../../Assets/${picture}.png`)} className={classes.picture}/>
+    {onClose ? (
+      <IconButton className={classes.closeButton} onClick={onClose}>
+        <CloseIcon />
+      </IconButton>
+    ) : null}
+  </MuiDialogTitle> 
 };
 
 
@@ -179,7 +174,6 @@ const styles = makeStyles(theme => ({
       fontSize: 15
     }
   },
-  // #f0f2f2
   root: {
     margin: 0,
     padding: theme.spacing(2),

@@ -1,14 +1,18 @@
 import React, {Fragment} from 'react';
 import {Typography, Grid, makeStyles, List, ListItem } from '@material-ui/core';
 import Background from './Assets/1.jpg';
-import Vegetables from './Vegetables'
-import Soil from './Soil'
-import Pests from './Pests'
+import Vegetables from './Gardening/Vegetables'
+import Soil from './Gardening/Soil'
+import Pests from './Gardening/Pests'
+import Chickens from './Livestock/Chicken'
+import Goats from './Livestock/Goat'
+import Bees from './Livestock/Bee'
 
 
 export default({navListItem}) => {
-  const {heading, subheading, main, backgroundStyle, toolbar, blue, red, banner, gridItem} = styles();
   
+  const {heading, subheading, main, backgroundStyle, toolbar, banner, gridItem} = styles();
+ 
   /* Render body text based on nav bar selection */
   const renderContent = () => {
     switch(navListItem){
@@ -18,23 +22,26 @@ export default({navListItem}) => {
         return <Soil />
       case 'Pests':
         return <Pests />
+      case 'Chickens':
+        return <Chickens />
+      case 'Goats':
+        return <Goats />
+      case 'Bees':
+        return <Bees />
     };
   };
-
   
   /* Render header text based on nav bar selection */
   const renderHeader = () => {
     let header = '', subHeader = ''
     if (!navListItem) {
-      return (
-        <List style={{width: '70%', margin: 'auto'}}>
-          <ListItem style={{justifyContent: 'center'}}>
-            <Typography className={banner} variant="h2" >
-              NL Gardeners & Homesteaders
-            </Typography>
-          </ListItem>
-        </List>
-      )
+      return <List style={{width: '70%', margin: 'auto'}}>
+        <ListItem style={{justifyContent: 'center'}}>
+          <Typography className={banner} variant="h2" >
+            NL Gardeners & Homesteaders
+          </Typography>
+        </ListItem>
+      </List>
     } else {
       switch (navListItem) {
         case 'Vegetables':
@@ -49,12 +56,24 @@ export default({navListItem}) => {
           header = 'Pests';
           subHeader = 'Click for preventative measures:';
           break;
+        case 'Chickens':
+          header = 'Chickens';
+          subHeader = 'How to raise and care for chickens:';
+          break;
+        case 'Goats':
+          header = 'Goats';
+          subHeader = 'How to raise and care for goats:';
+          break;
+        case 'Bees':
+          header = 'Beekeeping'
+          subHeader = 'How to start your own bee colony at home:';
+          break;
       }
       return <Fragment>
         <Typography className={heading} variant="h4" >
           {header}
         </Typography>
-        <Typography className={`${heading} ${subheading}`} style={{paddingTop: 30}} variant="h5" >
+        <Typography className={`${heading} ${subheading}`} variant="h5" >
           {subHeader}
         </Typography>
       </Fragment>
@@ -67,23 +86,16 @@ export default({navListItem}) => {
       <div className={toolbar} />
         <Grid container>
           <Grid item xs={12} className={gridItem}>
-          {/* <Typography className={heading} variant="h4" >
-          Vegetables
-        </Typography>
-        <Typography className={`${heading} ${subheading}`} style={{paddingTop: 30}} variant="h5" >
-        Choose a vegetable you want to grow:
-        </Typography> */}
             {renderHeader()}
           </Grid>
         </Grid>
     </div>
-    {/* <Vegetables /> */}
-    {/* <Soil /> */}
     {renderContent()}
   </main>
 };
 
 
+/* CSS */
 const styles = makeStyles(theme => ({
   backgroundStyle: {
     flexGrow: 1,
@@ -131,6 +143,7 @@ const styles = makeStyles(theme => ({
     }
   },
   subheading: {
+    paddingTop: 30,
     [theme.breakpoints.down('md')]: {
       fontSize: 18
     }
