@@ -1,20 +1,17 @@
 import React, {Fragment} from 'react';
-import { AppBar, Drawer, Hidden, IconButton, Toolbar, Typography, makeStyles } from '@material-ui/core';
+import { AppBar, Drawer, Hidden, IconButton, Toolbar, makeStyles } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
-import GardeningLinks from './NavLinks';
-import LivestockLinks from './Livestock/NavLinks';
+import NavLink from './NavLinks';
 
 const drawerWidth = 300;
 
 export default() => {
   
   const {appBar, toolBar, menuButton, drawer, drawerPaper} = useStyles(),
-        [mobileOpen, setMobileOpen] = React.useState(false),
-        currentPage = window.location.pathname;
-
+        [mobileOpen, setMobileOpen] = React.useState(false);
+        
   const handleDrawerToggle = () => 
     setMobileOpen(!mobileOpen);
-
   
   return <Fragment>
     <AppBar position="fixed" className={appBar}>
@@ -26,9 +23,6 @@ export default() => {
         >
           <MenuIcon/>
         </IconButton>
-        <Typography variant="h6" style={{color:'#222222'}} noWrap>
-         {/* Header */}
-        </Typography>
       </Toolbar>
     </AppBar>
 
@@ -41,23 +35,13 @@ export default() => {
           onClick={handleDrawerToggle}
           classes={{ paper: drawerPaper }}
         >
-          { currentPage === '/gardening' ? 
-              <GardeningLinks onClose={handleDrawerToggle}/> 
-            : currentPage === '/livestock' ?
-              <LivestockLinks onClose={handleDrawerToggle}/> 
-            : null
-          }
+          <NavLink onClose={handleDrawerToggle} />
         </Drawer>
       </Hidden>
 
       <Hidden xsDown implementation="css">
         <Drawer classes={{ paper: drawerPaper }} variant="permanent" open>
-          { currentPage === '/gardening' ? 
-              <GardeningLinks onClose={handleDrawerToggle}/> 
-            : currentPage === '/livestock' ?
-              <LivestockLinks onClose={handleDrawerToggle}/> 
-            : null
-          }
+        <NavLink onClose={handleDrawerToggle} />
         </Drawer>
       </Hidden>
     </nav>

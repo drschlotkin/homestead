@@ -29,7 +29,7 @@ export default class extends Component {
         return Promise.all([res1.json(), res2.json(), res3.json()]);
     })
     .then(([res1, res2, res3]) => {
-      console.log(res2)
+      console.log(res1)
       let arr = [];
       Object.keys(res1).forEach(key => arr.push(res1[key].name))
       this.setState({
@@ -50,7 +50,9 @@ export default class extends Component {
     soil: this.state.soil,
     pests: this.state.pests,
     onTopicSelect: this.handleTopicSelected,
-    gardening: ['Vegetables', 'Soil', 'Pests']
+    gardening: ['Vegetables', 'Soil', 'Pests'],
+    livestock: ['Chickens', 'Goats', 'Bees'],
+    community: ['Markets', 'Farms', 'Events']
   });
 
   render(){

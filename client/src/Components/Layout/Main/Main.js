@@ -7,12 +7,15 @@ import Pests from './Gardening/Pests'
 import Chickens from './Livestock/Chicken'
 import Goats from './Livestock/Goat'
 import Bees from './Livestock/Bee'
+import Markets from './Community/Markets'
+import Events from './Community/Events'
+import Farms from './Community/Farms'
 
 
 export default({navListItem}) => {
   
   const {heading, subheading, main, backgroundStyle, toolbar, banner, gridItem} = styles();
- 
+  
   /* Render body text based on nav bar selection */
   const renderContent = () => {
     switch(navListItem){
@@ -28,6 +31,12 @@ export default({navListItem}) => {
         return <Goats />
       case 'Bees':
         return <Bees />
+      case 'Markets':
+        return <Markets />
+      case 'Events':
+        return <Events />
+      case 'Farms':
+        return <Farms />
     };
   };
   
@@ -46,7 +55,7 @@ export default({navListItem}) => {
       switch (navListItem) {
         case 'Vegetables':
           header = 'Vegetables';
-          subHeader = 'Click icon for more information:';
+          subHeader = 'Click for more information:';
           break;
         case 'Soil':
           header = 'Soil';
@@ -67,6 +76,18 @@ export default({navListItem}) => {
         case 'Bees':
           header = 'Beekeeping'
           subHeader = 'How to start your own bee colony at home:';
+          break;
+        case 'Markets':
+          header = 'Markets'
+          subHeader = 'Farmers Markets in your area:';
+          break;
+        case 'Events':
+          header = 'Events'
+          subHeader = 'Agriculture Events in your area:';
+          break;
+        case 'Farms':
+          header = 'Farms'
+          subHeader = 'Fresh produce in your area:';
           break;
       }
       return <Fragment>
@@ -90,7 +111,8 @@ export default({navListItem}) => {
           </Grid>
         </Grid>
     </div>
-    {renderContent()}
+    <Markets />
+    {/* {renderContent()} */}
   </main>
 };
 
