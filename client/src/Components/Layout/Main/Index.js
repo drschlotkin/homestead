@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Main from './Main';
+import Home from './Home';
 import NavBar from './NavBar';
 import { Provider } from './context';
 
@@ -60,7 +60,7 @@ export default class extends Component {
     return <Provider value={this.getContext()}>
       <div style={{display: 'flex'}}>
         <NavBar />
-        <Main navListItem={navListItem}/>
+        <Home navListItem={navListItem}/>
       </div>
     </Provider>
   };

@@ -9,6 +9,7 @@ export default() => {
     {blog, meta, photo, description, paragraph, cardTitle, icons} = classes
 
   return (
+   
     <Card className={blog}>  
       <div className={meta}>
         <div className={photo} style={{backgroundImage: `url(${Background})`}}></div>
